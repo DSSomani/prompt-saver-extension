@@ -1,8 +1,8 @@
 /* Dropdown styling for Prompt Saver extension */
 .prompt-dropdown {
   position: fixed;
-  background: white;
-  border: 2px solid #4285f4;
+  background: #444654;
+  border: 2px solid #10a37f;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   max-height: 300px;
@@ -14,8 +14,8 @@
 .prompt-dropdown::before {
   content: "Prompt Saver";
   display: block;
-  background: #4285f4;
-  color: white;
+  background: #10a37f;
+  color: #ececf1;
   padding: 8px 12px;
   font-size: 12px;
   font-weight: 600;
@@ -40,19 +40,19 @@
 
 .prompt-item:hover,
 .prompt-item.selected {
-  background-color: #e3f2fd;
+  background-color: #343541;
   transform: translateX(2px);
 }
 
 .prompt-title {
   font-weight: 600;
-  color: #1a73e8;
+  color: #10a37f;
   font-size: 14px;
   margin-bottom: 4px;
 }
 
 .prompt-preview {
-  color: #5f6368;
+  color: #b4bcd0;
   font-size: 12px;
   line-height: 1.4;
 }
@@ -63,15 +63,15 @@
 }
 
 .prompt-dropdown::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #202123;
   border-radius: 3px;
 }
 
 .prompt-dropdown::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: #565869;
   border-radius: 3px;
 }
 
 .prompt-dropdown::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: #6b6c7e;
 }

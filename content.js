@@ -522,8 +522,8 @@ class PromptSaverContent {
       snackbar.style.left = '50%';
       snackbar.style.bottom = '40px';
       snackbar.style.transform = 'translateX(-50%)';
-      snackbar.style.background = 'rgba(60,60,60,0.97)';
-      snackbar.style.color = '#fff';
+      snackbar.style.background = '#444654';
+      snackbar.style.color = '#ececf1';
       snackbar.style.padding = '12px 28px';
       snackbar.style.borderRadius = '6px';
       snackbar.style.fontSize = '1rem';
