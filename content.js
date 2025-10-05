@@ -241,6 +241,7 @@ class PromptSaverContent {
     
     // Save to storage
     chrome.storage.local.set({ prompts: this.prompts }, () => {
+      this.showSnackbar('Prompt saved!');
       console.log(`Prompt "${name}" saved successfully`);
     });
   }
@@ -507,6 +508,34 @@ class PromptSaverContent {
     return div.innerHTML;
   }
   
+  showSnackbar(message) {
+    let snackbar = document.getElementById('prompt-saver-snackbar');
+    if (!snackbar) {
+      snackbar = document.createElement('div');
+      snackbar.id = 'prompt-saver-snackbar';
+      snackbar.style.position = 'fixed';
+      snackbar.style.left = '50%';
+      snackbar.style.bottom = '40px';
+      snackbar.style.transform = 'translateX(-50%)';
+      snackbar.style.background = 'rgba(60,60,60,0.97)';
+      snackbar.style.color = '#fff';
+      snackbar.style.padding = '12px 28px';
+      snackbar.style.borderRadius = '6px';
+      snackbar.style.fontSize = '1rem';
+      snackbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+      snackbar.style.zIndex = '2147483647';
+      snackbar.style.opacity = '0';
+      snackbar.style.pointerEvents = 'none';
+      snackbar.style.transition = 'opacity 0.3s';
+      document.body.appendChild(snackbar);
+    }
+    snackbar.textContent = message;
+    snackbar.style.opacity = '1';
+    setTimeout(() => {
+      snackbar.style.opacity = '0';
+    }, 2000);
+  }
+
   // Clean up resources when extension is unloaded
   cleanup() {
     if (this.observer) {
