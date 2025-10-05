@@ -123,6 +123,20 @@ class PromptSaverContent {
           this.hideDropdown();
           break;
       }
+      return;
+    }
+
+    // If not in dropdown, check for save command on Enter/Tab
+    if (event.key === 'Enter' || event.key === 'Tab') {
+      const target = event.target;
+      if (!this.isTextInput(target)) return;
+      const { value, cursorPos } = this.getInputValueAndCursor(target);
+      if (typeof value === 'undefined' || typeof cursorPos === 'undefined') return;
+      const textBeforeCursor = value.substring(0, cursorPos);
+      if (this.checkForSaveCommand(textBeforeCursor, target)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
     }
   }
   
@@ -144,12 +158,7 @@ class PromptSaverContent {
     
     const textBeforeCursor = value.substring(0, cursorPos);
     
-    // Check for prompt save command
-    if (this.checkForSaveCommand(textBeforeCursor, target)) {
-      return;
-    }
-    
-    // Check for prompt use command
+    // Only check for prompt use command here
     this.checkForUseCommand(textBeforeCursor, target);
   }
   
