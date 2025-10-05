@@ -169,13 +169,18 @@ class PromptSaverContent {
     if (match) {
       const promptName = match[1];
       const promptContent = match[2];
-      
       // Save the prompt
       this.savePrompt(promptName, promptContent);
-      
-      // Remove the command from the input
-      this.removeCommandFromInput(inputElement, match[0]);
-      
+      // Remove only the #prompt-save:[name] part, keep the prompt content
+      const commandPattern = new RegExp(`${this.TRIGGER_SYMBOL}${this.SAVE_COMMAND}${promptName}\\s+`);
+      const { value, cursorPos } = this.getInputValueAndCursor(inputElement);
+      const textBeforeCursor = value.substring(0, cursorPos);
+      const commandMatch = textBeforeCursor.match(commandPattern);
+      if (commandMatch) {
+        const start = textBeforeCursor.indexOf(commandMatch[0]);
+        const end = start + commandMatch[0].length;
+        this.replaceTextInInput(inputElement, start, end, '');
+      }
       return true;
     }
     
