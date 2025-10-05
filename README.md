@@ -18,7 +18,7 @@ Prompt Saver is a browser extension that lets you save, manage, and quickly reus
 5. Toggle the extension on/off for the current site using the switch at the top.
 
 ## Usage Instructions
-<!-- - **Save a prompt:** Type `#prompt-save:name` followed by your prompt text in any input field. -->
+- **Save a prompt:** Type `#prompt-save:name` followed by your prompt text in any input field.
 - **Use a prompt:** Type `#name` or start typing `#` to see available prompts.
 - Use arrow keys to navigate, Enter/Tab to select.
 

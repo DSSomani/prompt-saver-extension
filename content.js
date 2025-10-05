@@ -123,6 +123,20 @@ class PromptSaverContent {
           this.hideDropdown();
           break;
       }
+      return;
+    }
+
+    // If not in dropdown, check for save command on Enter/Tab
+    if (event.key === 'Enter' || event.key === 'Tab') {
+      const target = event.target;
+      if (!this.isTextInput(target)) return;
+      const { value, cursorPos } = this.getInputValueAndCursor(target);
+      if (typeof value === 'undefined' || typeof cursorPos === 'undefined') return;
+      const textBeforeCursor = value.substring(0, cursorPos);
+      if (this.checkForSaveCommand(textBeforeCursor, target)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
     }
   }
   
@@ -144,12 +158,7 @@ class PromptSaverContent {
     
     const textBeforeCursor = value.substring(0, cursorPos);
     
-    // Check for prompt save command
-    if (this.checkForSaveCommand(textBeforeCursor, target)) {
-      return;
-    }
-    
-    // Check for prompt use command
+    // Only check for prompt use command here
     this.checkForUseCommand(textBeforeCursor, target);
   }
   
@@ -160,13 +169,18 @@ class PromptSaverContent {
     if (match) {
       const promptName = match[1];
       const promptContent = match[2];
-      
       // Save the prompt
       this.savePrompt(promptName, promptContent);
-      
-      // Remove the command from the input
-      this.removeCommandFromInput(inputElement, match[0]);
-      
+      // Remove only the #prompt-save:[name] part, keep the prompt content
+      const commandPattern = new RegExp(`${this.TRIGGER_SYMBOL}${this.SAVE_COMMAND}${promptName}\\s+`);
+      const { value, cursorPos } = this.getInputValueAndCursor(inputElement);
+      const textBeforeCursor = value.substring(0, cursorPos);
+      const commandMatch = textBeforeCursor.match(commandPattern);
+      if (commandMatch) {
+        const start = textBeforeCursor.indexOf(commandMatch[0]);
+        const end = start + commandMatch[0].length;
+        this.replaceTextInInput(inputElement, start, end, '');
+      }
       return true;
     }
     
@@ -232,6 +246,7 @@ class PromptSaverContent {
     
     // Save to storage
     chrome.storage.local.set({ prompts: this.prompts }, () => {
+      this.showSnackbar('Prompt saved!');
       console.log(`Prompt "${name}" saved successfully`);
     });
   }
@@ -498,6 +513,34 @@ class PromptSaverContent {
     return div.innerHTML;
   }
   
+  showSnackbar(message) {
+    let snackbar = document.getElementById('prompt-saver-snackbar');
+    if (!snackbar) {
+      snackbar = document.createElement('div');
+      snackbar.id = 'prompt-saver-snackbar';
+      snackbar.style.position = 'fixed';
+      snackbar.style.left = '50%';
+      snackbar.style.bottom = '40px';
+      snackbar.style.transform = 'translateX(-50%)';
+      snackbar.style.background = 'rgba(60,60,60,0.97)';
+      snackbar.style.color = '#fff';
+      snackbar.style.padding = '12px 28px';
+      snackbar.style.borderRadius = '6px';
+      snackbar.style.fontSize = '1rem';
+      snackbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+      snackbar.style.zIndex = '2147483647';
+      snackbar.style.opacity = '0';
+      snackbar.style.pointerEvents = 'none';
+      snackbar.style.transition = 'opacity 0.3s';
+      document.body.appendChild(snackbar);
+    }
+    snackbar.textContent = message;
+    snackbar.style.opacity = '1';
+    setTimeout(() => {
+      snackbar.style.opacity = '0';
+    }, 2000);
+  }
+
   // Clean up resources when extension is unloaded
   cleanup() {
     if (this.observer) {
