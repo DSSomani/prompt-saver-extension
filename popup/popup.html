@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Prompt Saver</h1>
+    
+    <div class="site-settings">
+      <div class="setting-label">
+        <span>Enable on this site:</span>
+        <strong id="currentHost"></strong>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="siteToggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+    
+    <div id="mainContent">
+        <div class="add-prompt-section">
+          <h3>Add New Prompt</h3>
+          <input type="text" id="promptTitle" placeholder="Prompt title..." maxlength="50">
+          <textarea id="promptContent" placeholder="Enter your prompt here..." rows="4"></textarea>
+          <button id="savePrompt">Save Prompt</button>
+        </div>
+        
+        <div class="prompts-section">
+          <h3>Saved Prompts</h3>
+          <div id="promptsList"></div>
+        </div>
+        
+        <div class="usage-info">
+          <h3>Usage Instructions</h3>
+          <p><strong>Save a prompt:</strong> Type <code>#prompt-save:name</code> followed by your prompt text in any input field.</p>
+          <p><strong>Use a prompt:</strong> Type <code>#name</code> or start typing <code>#</code> to see available prompts.</p>
+          <p>Use arrow keys to navigate, Enter/Tab to select.</p>
+        </div>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
