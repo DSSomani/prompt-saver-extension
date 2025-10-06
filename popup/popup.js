@@ -1,4 +1,13 @@
 class PromptSaverPopup {
+  applyTheme(theme) {
+    document.body.classList.remove('dark', 'light');
+    document.body.classList.add(theme);
+    const themeLabel = document.getElementById('themeLabel');
+    if (themeLabel) {
+      themeLabel.textContent = theme === 'dark' ? 'Dark theme' : 'Light theme';
+    }
+    document.getElementById('themeToggle').checked = theme === 'dark';
+  }
   constructor() {
     this.prompts = [];
     this.disabledSites = [];
@@ -10,6 +19,18 @@ class PromptSaverPopup {
     // Main event listeners
     document.getElementById('savePrompt').addEventListener('click', this.savePrompt.bind(this));
     document.getElementById('siteToggle').addEventListener('change', this.handleSiteToggle.bind(this));
+
+    // Theme toggle event
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('change', (e) => {
+      const theme = e.target.checked ? 'dark' : 'light';
+      localStorage.setItem('promptSaverTheme', theme);
+      this.applyTheme(theme);
+    });
+
+    // Set initial theme
+    const savedTheme = localStorage.getItem('promptSaverTheme') || 'dark';
+    this.applyTheme(savedTheme);
     
     // Event delegation for dynamic delete buttons
     document.getElementById('promptsList').addEventListener('click', (event) => {
