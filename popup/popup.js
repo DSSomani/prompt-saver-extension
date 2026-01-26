@@ -10,6 +10,7 @@ class PromptSaverPopup {
     // Main event listeners
     document.getElementById('savePrompt').addEventListener('click', this.savePrompt.bind(this));
     document.getElementById('siteToggle').addEventListener('change', this.handleSiteToggle.bind(this));
+    document.getElementById('viewInstructions').addEventListener('click', this.viewInstructions.bind(this));
     
     // Event delegation for dynamic delete buttons
     document.getElementById('promptsList').addEventListener('click', (event) => {
@@ -60,6 +61,10 @@ class PromptSaverPopup {
     }
     
     chrome.storage.local.set({ disabledSites: this.disabledSites });
+  }
+
+  viewInstructions() {
+    window.location.href = 'usage.html';
   }
 
   renderPrompts() {

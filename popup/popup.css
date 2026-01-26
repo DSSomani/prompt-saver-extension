@@ -231,7 +231,7 @@ input:checked + .slider:before {
 }
 
 .usage-info p {
-  margin: 5px 0;
+  margin: 5px 0 10px 0;
   font-size: 13px;
   color: #555;
 }
@@ -241,6 +241,26 @@ input:checked + .slider:before {
   padding: 2px 4px;
   border-radius: 3px;
   font-family: 'Courier New', monospace;
+}
+
+.instructions-btn {
+  background: #4285f4;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  width: 100%;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.instructions-btn:hover {
+  background: #3367d6;
 }
 
 .note {

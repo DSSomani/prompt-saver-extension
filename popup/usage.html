@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="usage.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button id="backBtn" class="back-btn">← Back</button>
+      <h1>Usage Instructions</h1>
+    </div>
+    
+    <div class="content">
+      <section class="instruction-section">
+        <h2>How to Use Prompt Saver</h2>
+        <p>Prompt Saver allows you to save and quickly reuse prompts in any text input field across the web.</p>
+      </section>
+      
+      <section class="instruction-section">
+        <h2>Saving a Prompt</h2>
+        <p>There are two ways to save a prompt:</p>
+        
+        <div class="method">
+          <h3>Method 1: Using the Popup</h3>
+          <ol>
+            <li>Click the extension icon to open the popup</li>
+            <li>Enter a title for your prompt</li>
+            <li>Enter the prompt content</li>
+            <li>Click "Save Prompt"</li>
+          </ol>
+        </div>
+        
+        <div class="method">
+          <h3>Method 2: Using a Command in Any Input Field</h3>
+          <p>Type in any input field:</p>
+          <div class="code-block">
+            <code>#prompt-save:name followed by your prompt text</code>
+          </div>
+          <p class="example">Example: <code>#prompt-save:greeting Hello! How can I help you today?</code></p>
+          <p class="note">
+            Note: When saving via <code>#prompt-save:name</code>, the prompt name may only contain letters, numbers, underscores, and hyphens (no spaces, slashes, colons, or periods).
+          </p>
+        </div>
+      </section>
+      
+      <section class="instruction-section">
+        <h2>Using a Saved Prompt</h2>
+        <p>To insert a saved prompt into any input field:</p>
+        
+        <div class="method">
+          <h3>Quick Insert</h3>
+          <p>Type <code>#</code> followed by your prompt name, then press <kbd>Enter</kbd> or <kbd>Tab</kbd> to insert it. As you type, a filtered dropdown of matching prompts will appear:</p>
+          <div class="code-block">
+            <code>#name</code>
+          </div>
+          <p class="example">Example: <code>#greeting</code> will show your saved greeting prompt in the dropdown; press <kbd>Enter</kbd> or <kbd>Tab</kbd> to insert it</p>
+        </div>
+        
+        <div class="method">
+          <h3>Browse and Select</h3>
+          <ol>
+            <li>Type <code>#</code> in any input field</li>
+            <li>A dropdown will appear showing all available prompts</li>
+            <li>Use <kbd>↑</kbd> <kbd>↓</kbd> arrow keys to navigate</li>
+            <li>Press <kbd>Enter</kbd> or <kbd>Tab</kbd> to select</li>
+            <li>Press <kbd>Esc</kbd> to cancel</li>
+          </ol>
+        </div>
+      </section>
+      
+      <section class="instruction-section">
+        <h2>Managing Prompts</h2>
+        <ul>
+          <li><strong>View all prompts:</strong> Open the extension popup to see all saved prompts</li>
+          <li><strong>Update a prompt:</strong> Save a prompt with the same name to update its content</li>
+          <li><strong>Delete a prompt:</strong> Click the × button next to a prompt in the popup</li>
+        </ul>
+      </section>
+      
+      <section class="instruction-section">
+        <h2>Site Settings</h2>
+        <p>You can enable or disable the extension for specific websites:</p>
+        <ul>
+          <li>Open the extension popup while on the website</li>
+          <li>Use the toggle switch at the top to enable/disable</li>
+          <li>When disabled, the extension won't work on that site</li>
+        </ul>
+      </section>
+      
+      <section class="instruction-section tips">
+        <h2>💡 Tips</h2>
+        <ul>
+          <li>Prompt names can contain letters, numbers, underscores, hyphens, spaces, slashes, colons, and periods</li>
+          <li>Start typing <code>#</code> to see all available prompts instantly</li>
+          <li>Keep prompt names short and memorable for quick access</li>
+          <li>Use descriptive names to easily identify your prompts</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  
+  <script src="usage.js"></script>
+</body>
+</html>
